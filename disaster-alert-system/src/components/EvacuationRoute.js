@@ -55,7 +55,7 @@ const EvacuationRoute = () => {
     };
   }, [position, destination]);
 
-  return <div id="map" style={{ height: '400px', width: '100%' }} />;
+  return <div id="map" style={{ height: '400px', width: '800px' }} />;
 };
 
 export default EvacuationRoute;

@@ -27,8 +27,8 @@ const Geolocation = () => {
       {location ? (
         <MapContainer
           center={[location.latitude, location.longitude]}
-          zoom={15}
-          style={{ height: '400px', width: '100%' }}
+          zoom={10}
+          style={{ height: '400px', width: '550px'}}
         >
           <TileLayer
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"

@@ -21,3 +21,347 @@ h1 {
 button {
   margin-top: 10px;
 }
+/* AlertComponent.css */
+
+/* Styling the alert container */
+.alert-container {
+  padding-bottom: 60px; /* Add space at the bottom for the fixed footer */
+}
+
+/* Header styles */
+.header {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  background-color: #fff;
+  border-bottom: 1px solid #ddd;
+}
+
+/* Alert Box Styles */
+.alert-box {
+  background-color: #f8d7da;
+  border: 1px solid #f5c6cb;
+  padding: 15px;
+  margin-bottom: 10px;
+}
+
+
+.alert-text {
+  font-size: 16px;
+  margin-top: 10px;
+}
+
+.dismiss-button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+
+
+.footer-link {
+  cursor: pointer;
+  text-decoration: none;
+  color: white;
+  padding: 5px 10px;
+  font-size: 14px;
+}
+
+/* Optional: Hover effect for text links */
+.footer-link:hover {
+  color: white;
+  text-decoration: underline;
+}
+
+
+
+
+
+/* Global Reset */
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+/* Login Container */
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(to bottom right, #4facfe, #00f2fe);
+}
+
+/* Login Box */
+.login-box {
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  width: 350px;
+  text-align: center;
+}
+
+/* Heading */
+.login-box h2 {
+  margin-bottom: 20px;
+  color: #333333;
+  font-size: 24px;
+}
+
+/* Input Group */
+.input-group {
+  margin-bottom: 15px;
+  text-align: left;
+}
+
+.input-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #555555;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+/* Submit Button */
+.login-button {
+  width: 100%;
+  padding: 10px;
+  background: #4facfe;
+  color: #ffffff;
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.login-button:hover {
+  background: #008cba;
+}
+
+/* Sign-Up Text */
+.signup-text {
+  margin-top: 15px;
+  font-size: 14px;
+  color: #555555;
+}
+
+.signup-link {
+  color: #4facfe;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.signup-link:hover {
+  text-decoration: underline;
+}
+
+/* AlertComponent.css */
+
+/* Alert Container Styles */
+.alert-container {
+  padding: 20px;
+  background-color: #f8f9fa;
+  min-height: 100vh;
+  position: relative;
+}
+
+/* Header Styles */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background-color: #ffffff;
+  border-bottom: 2px solid #ddd;
+}
+
+.icons {
+  font-size: 20px;
+  color: #333;
+}
+
+/* Welcome Box Styles */
+.welcome-box {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  text-align: center;
+  margin: 20px 0;
+}
+
+/* Alert Box Styles */
+.alert-box {
+  background-color: #f8d7da;
+  border: 1px solid #f5c6cb;
+  padding: 15px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+}
+
+.alert-header {
+  font-weight: bold;
+  font-size: 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.close-button {
+  font-size: 18px;
+  border: none;
+  background: transparent;
+  color: #333;
+  cursor: pointer;
+}
+
+.alert-text {
+  font-size: 16px;
+  margin-top: 10px;
+}
+
+.dismiss-button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 8px 12px;
+  cursor: pointer;
+  margin-top: 10px;
+  font-size: 14px;
+  border-radius: 4px;
+}
+
+/* Footer Styles (Fixed Navigation Bar) */
+.footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #333;
+  color: white;
+  display: flex;
+  justify-content: space-around;
+  padding: 10px;
+  font-size: 14px;
+  text-align: center;
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.main-content {
+  flex-grow: 1; /* Pushes footer to the bottom */
+  padding-bottom: 70px; /* Ensure content doesn't overlap with footer */
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.main-content {
+  flex-grow: 1; /* Pushes footer to the bottom */
+  padding-bottom: 70px; /* Ensure content doesn't overlap with footer */
+}
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #333;
+  color: white;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 10px;
+}
+
+.footer-link {
+  text-decoration: none;
+  color: white;
+}
+
+.footer-link:hover {
+  color: #007bff;
+  text-decoration: underline;
+}
+
+
+
+.family-locator-container {
+  padding: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.family-locator-title {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.form-row {
+  margin-bottom: 9px;
+}
+
+.form-input {
+  padding: 5px;
+  font-size: 16px;
+  border-radius: 5px;
+}
+
+.add-member-button {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.add-member-button:hover {
+  background-color: #0056b3;
+}
+
+.family-members-list {
+  margin-top: 30px;
+}
+
+.family-members-title {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.family-member-card {
+  margin-bottom: 15px;
+}
+
+.family-member-card .card-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.family-member-card .card-text {
+  font-size: 1rem;
+}
