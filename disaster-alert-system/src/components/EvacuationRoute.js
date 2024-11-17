@@ -123,7 +123,35 @@ const EvacuationRoute = () => {
         {loading ? (
           <p>Loading optimized route...</p>
         ) : (
-          <pre>Based on the provided waypoints, origin, and destination, I will calculate the most optimized route. Since the origin and destination are the same as the waypoints, the route will be a simple straight line between the two points.\n\nHowever, considering the parameters \"avoid_disaster_zone\" and \"time_sensitive\" are both true, I need more information about the disaster zone location and the current traffic conditions to provide an optimized route that avoids the disaster zone and minimizes travel time.\n\nAssuming there is no additional information available, I will provide a basic route optimization based on the straight-line distance between the two points.\n\n**Optimized Route:**\n\n1. From the origin (32.9855, -96.7488), head east towards the destination (32.9916, -96.7456).\n2. Continue on the straight-line path for approximately 0.6 miles until you reach the destination.\n\n**Note:** Please be aware that this route may not be the most efficient or safe, as it does not take into account real-time traffic conditions, road closures, or disaster zones. For a more accurate and optimized route, I recommend using a mapping or GPS service that can provide real-time updates and consider the specified parameters.\n\n**Route Summary:**\n\n* Distance: approximately 0.6 miles\n* Estimated travel time: approximately 1-2 minutes (depending on traffic conditions)\n* Route type: straight-line path\n\nPlease let me know if you have any further questions or if there's anything else I can help you with.</pre>
+          <pre
+          style={{
+            whiteSpace: 'pre-wrap',
+            wordWrap: 'break-word', 
+            overflowY: 'auto',
+            maxHeight: '400px', 
+            padding: '10px', 
+            borderRadius: '4px', 
+            backgroundColor: '#f9f9f9',
+          }}
+        >Based on the provided waypoints, origin, and destination, 
+        I will calculate the most optimized route. Since the origin 
+        and destination are the same as the waypoints, the route 
+        will be a simple straight line between the two points.
+        However, considering the parameters \"avoid_disaster_zone\"
+         and \"time_sensitive\" are both true, I need more information
+          about the disaster zone location and the current traffic 
+          conditions to provide an optimized route that avoids the
+         disaster zone and minimizes travel time.Assuming there
+         is no additional information available, I will provide
+         a basic route optimization based on the straight-line
+         distance between the two points.Optimized Route:1. From
+         the origin (32.9855, -96.7488), head east towards the 
+        destination (32.9916, -96.7456).\n2. Continue on the straight
+        -line path for approximately 0.6 miles until you reach the destination.
+        Route Summary: Distance: approximately 0.6 miles
+         Estimated travel time: approximately 1-2 minutes 
+         Route type: straight-line path
+         Please let me know if you have any further questions or if there's anything else I can help you with.</pre>
         )}
       </div>
     </div>
