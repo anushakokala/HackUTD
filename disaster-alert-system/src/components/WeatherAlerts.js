@@ -1,15 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { ListGroup } from 'react-bootstrap';
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
-import 'leaflet/dist/leaflet.css';
 
 const WeatherAlerts = () => {
-  const [weatherData, setWeatherData] = useState(null);
+  const [alerts, setAlerts] = useState([]);
+  const [temperature, setTemperature] = useState(null);
   const [location, setLocation] = useState(null);
   const [error, setError] = useState(null);
-  const WEATHER_API_KEY = "91393038bb1447b6cf5c917555f4737a"; // API key
 
-  // Get user's geolocation
   useEffect(() => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
@@ -19,29 +16,61 @@ const WeatherAlerts = () => {
             longitude: position.coords.longitude,
           });
         },
+        (err) => {
+          setError("Unable to retrieve your location. Please enable location services.");
+          console.error(err);
+        }
       );
     } else {
       setError("Geolocation is not supported by your browser.");
-      setLocation({ latitude: 37.7749, longitude: -122.4194 }); // San Francisco as fallback
     }
   }, []);
 
   useEffect(() => {
     if (location) {
-      fetch(
-        `https://api.openweathermap.org/data/2.5/onecall?lat=${location.latitude}&lon=${location.longitude}&exclude=hourly,minutely&appid=${WEATHER_API_KEY}&units=metric`
-      )
-        .then((response) => response.json())
+      const { latitude, longitude } = location;
+
+      fetch(`https://api.weather.gov/alerts?point=${latitude},${longitude}`)
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+          }
+          return response.json();
+        })
         .then((data) => {
-          console.log(data);
-          if (data && data.current) {
-            setWeatherData(data);
+          if (data.features && data.features.length > 0) {
+            setAlerts(data.features);
           } else {
-            setError("Weather data is unavailable.");
+            setAlerts([]);
+            setError("No weather alerts available at this location.");
           }
         })
         .catch((err) => {
-          setError("Unable to fetch weather data.");
+          setError("Unable to fetch weather alerts.");
+          console.error(err);
+        });
+
+      // Fetch temperature
+      fetch(`https://api.weather.gov/points/${latitude},${longitude}`)
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.properties && data.properties.forecastHourly) {
+            const forecastUrl = data.properties.forecastHourly;
+            return fetch(forecastUrl);
+          } else {
+            throw new Error("Temperature data is unavailable.");
+          }
+        })
+        .then((response) => response.json())
+        .then((forecastData) => {
+          if (forecastData.properties && forecastData.properties.periods) {
+            setTemperature(forecastData.properties.periods[0].temperature);
+          } else {
+            throw new Error("Unable to parse temperature data.");
+          }
+        })
+        .catch((err) => {
+          setError("Unable to fetch temperature data.");
           console.error(err);
         });
     }
@@ -54,44 +83,36 @@ const WeatherAlerts = () => {
       {error && <p style={{ color: 'red' }}>{error}</p>}
 
       {location && (
-        <>
-          <p>
-            <strong>Your Location:</strong> Latitude: {location.latitude}, Longitude: {location.longitude}
-          </p>
-
-        </>
+        <p>
+          <strong>Your Location:</strong> Latitude: {location.latitude}, Longitude: {location.longitude}
+        </p>
       )}
 
-      {weatherData ? (
+      {temperature !== null && (
+        <p>
+          <strong>Current Temperature:</strong> {temperature}°F
+        </p>
+      )}
+
+      {alerts.length > 0 ? (
         <>
-          <h3>Current Weather</h3>
-          {weatherData.current ? (
-            <p>
-              <strong>Temperature:</strong> {weatherData.current.temp}°C <br />
-              <strong>Weather:</strong> {weatherData.current.weather[0]?.description} <br />
-              <strong>Humidity:</strong> {weatherData.current.humidity}% <br />
-              <strong>Wind Speed:</strong> {weatherData.current.wind_speed} m/s
-            </p>
-          ) : (
-            <p>Loading current weather data...</p>
-          )}
-          {weatherData.alerts && weatherData.alerts.length > 0 ? (
-            <>
-              <h3>Weather Alerts</h3>
-              <ListGroup>
-                {weatherData.alerts.map((alert, index) => (
-                  <ListGroup.Item key={index}>
-                    <strong>{alert.event}</strong>: {alert.description}
-                  </ListGroup.Item>
-                ))}
-              </ListGroup>
-            </>
-          ) : (
-            <p>No weather alerts at the moment.</p>
-          )}
+          <h3>Active Emergncy Alerts</h3>
+          <ListGroup>
+            {alerts.map((alert, index) => (
+              <ListGroup.Item key={index}>
+                <strong>{alert.properties.event}</strong>
+                <p>{alert.properties.headline}</p>
+                <p>{alert.properties.description}</p>
+                <p>
+                  <strong>Effective:</strong> {new Date(alert.properties.effective).toLocaleString()} <br />
+                  <strong>Expires:</strong> {new Date(alert.properties.expires).toLocaleString()}
+                </p>
+              </ListGroup.Item>
+            ))}
+          </ListGroup>
         </>
       ) : (
-        !error && <p>Loading weather data...</p>
+        !error && <p>No active weather alerts at this time.</p>
       )}
     </div>
   );
