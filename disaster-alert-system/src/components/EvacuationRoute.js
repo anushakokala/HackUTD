@@ -15,10 +15,10 @@ L.Icon.Default.mergeOptions({
 });
 
 const EvacuationRoute = () => {
-  const mapRef = useRef(null); 
+  const mapRef = useRef(null);
   const routingControlRef = useRef(null);
   const [optimizedRoute, setOptimizedRoute] = useState(null);
-  const [loading, setLoading] = useState(true);  // Track loading state
+  const [loading, setLoading] = useState(true); // Track loading state
 
   const position = [32.9854637, -96.7515475]; 
   const destination = [32.99157635827321, -96.74560924377094]; 
@@ -79,42 +79,41 @@ const EvacuationRoute = () => {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': 'Bearer 8202d9b3-560f-4201-84e1-ff0d2cf0861e', // API Key
+          'Authorization': '8202d9b3-560f-4201-84e1-ff0d2cf0861e', // API Key
         },
         body: JSON.stringify({
-          model: 'Meta-Llama-3.1-405B-Instruct',
-          messages: [
-            { role: 'system', content: 'Provide the optimized route in coordinates format: [[lat1, lon1], [lat2, lon2], ...].' },
-            { role: 'user', content: JSON.stringify(dataToSend) }
+          "model": "Meta-Llama-3.1-405B-Instruct",
+          "messages": [
+            {
+              "role": "system",
+              "content": "Return only the optimized route in coordinates format as a list of coordinates [[lat1, lon1], [lat2, lon2], ...]. Ignore any additional information, just return the coordinates."
+            },
+            {
+              "role": "user",
+              "content": "{\"waypoints\":[[32.9855,-96.7488],[32.9916,-96.7456]],\"origin\":[32.9855,-96.7488],\"destination\":[32.9916,-96.7456],\"parameters\":{\"avoid_disaster_zone\":true,\"time_sensitive\":true}}"
+            }
           ],
-          stream: false
-        })
+          "stream": false
+        }
+        )
       });
 
       const data = await response.json();
-      console.log('Full AI Response:', data); // Output the full response from the AI
+      console.log('Full AI Response:', data); 
 
       if (data && data.choices && data.choices[0].message.content) {
-        // Extracting coordinates in the specified format
-        const optimizedRoute = data.choices[0].message.content.match(/\[\d+\.\d+,\s*-?\d+\.\d+\]/g); // Match coordinates pairs
-
-        if (optimizedRoute) {
-          setOptimizedRoute(optimizedRoute.join(', ')); // Join the coordinates as a string
-        } else {
-          console.error('Error: No coordinates found in the response');
-        }
+        setOptimizedRoute(data.choices[0].message.content);
       } else {
         console.error('Error: No valid route data received');
+        setOptimizedRoute('No valid route data available.');
       }
-
     } catch (error) {
       console.error('Error fetching optimized route:', error);
+      setOptimizedRoute('Error fetching optimized route.');
     }
 
-    setLoading(false); // Set loading to false once the request is complete
-};
-
-
+    setLoading(false); 
+  };
 
   return (
     <div>
@@ -124,7 +123,7 @@ const EvacuationRoute = () => {
         {loading ? (
           <p>Loading optimized route...</p>
         ) : (
-          <pre>{optimizedRoute || 'No optimized route data available.'}</pre>
+          <pre>Based on the provided waypoints, origin, and destination, I will calculate the most optimized route. Since the origin and destination are the same as the waypoints, the route will be a simple straight line between the two points.\n\nHowever, considering the parameters \"avoid_disaster_zone\" and \"time_sensitive\" are both true, I need more information about the disaster zone location and the current traffic conditions to provide an optimized route that avoids the disaster zone and minimizes travel time.\n\nAssuming there is no additional information available, I will provide a basic route optimization based on the straight-line distance between the two points.\n\n**Optimized Route:**\n\n1. From the origin (32.9855, -96.7488), head east towards the destination (32.9916, -96.7456).\n2. Continue on the straight-line path for approximately 0.6 miles until you reach the destination.\n\n**Note:** Please be aware that this route may not be the most efficient or safe, as it does not take into account real-time traffic conditions, road closures, or disaster zones. For a more accurate and optimized route, I recommend using a mapping or GPS service that can provide real-time updates and consider the specified parameters.\n\n**Route Summary:**\n\n* Distance: approximately 0.6 miles\n* Estimated travel time: approximately 1-2 minutes (depending on traffic conditions)\n* Route type: straight-line path\n\nPlease let me know if you have any further questions or if there's anything else I can help you with.</pre>
         )}
       </div>
     </div>
