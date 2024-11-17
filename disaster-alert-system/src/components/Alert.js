@@ -13,11 +13,7 @@ const Alert = () => {
   return (
     <div className="alert-container">
       {/* Header section */}
-      <div className="header">
-        <span className="icons">
-          {/* You can keep the icons if needed */}
-        </span>
-      </div>
+      
 
       {/* Alert content */}
       <div className="content">

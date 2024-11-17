@@ -77,10 +77,10 @@ const WeatherAlerts = () => {
   }, [location]);
 
   return (
-    <div>
-      <h2>Weather Information</h2>
+    <div style={styles.container}>
+      <h2 style={styles.header}>Weather Information</h2>
 
-      {error && <p style={{ color: 'red' }}>{error}</p>}
+      {error && <p style={styles.error}>{error}</p>}
 
       {location && (
         <p>
@@ -96,10 +96,10 @@ const WeatherAlerts = () => {
 
       {alerts.length > 0 ? (
         <>
-          <h3>Active Emergncy Alerts</h3>
+          <h3 style={styles.alertsTitle}>Active Emergency Alerts</h3>
           <ListGroup>
             {alerts.map((alert, index) => (
-              <ListGroup.Item key={index}>
+              <ListGroup.Item key={index} style={styles.listItem}>
                 <strong>{alert.properties.event}</strong>
                 <p>{alert.properties.headline}</p>
                 <p>{alert.properties.description}</p>
@@ -116,6 +116,41 @@ const WeatherAlerts = () => {
       )}
     </div>
   );
+};
+
+const styles = {
+  container: {
+    padding: '20px',
+    maxWidth: '800px',
+    margin: '0 auto',
+    backgroundColor: '#ffff', // Light pink background
+    border: '1px solid #f2c6d7', // Light pink border
+    borderRadius: '10px',
+    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
+  },
+  header: {
+    color: '#d81b60', // Deep pink color
+    borderBottom: '2px solid #d81b60',
+    paddingBottom: '10px',
+    marginBottom: '20px',
+    textAlign: 'center',
+  },
+  error: {
+    color: '#e91e63', // Strong pink for errors
+    textAlign: 'center',
+    marginBottom: '20px',
+  },
+  alertsTitle: {
+    color: '#d81b60', // Deep pink for the alerts section
+    marginBottom: '15px',
+    textAlign: 'center',
+  },
+  listItem: {
+    backgroundColor: '#ffff', // Light pink background for each alert
+    border: '1px solid #fffff', // Subtle darker pink border
+    borderRadius: '8px',
+    marginBottom: '10px',
+  },
 };
 
 export default WeatherAlerts;

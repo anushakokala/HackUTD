@@ -7,6 +7,7 @@ h1 {
   margin: 20px 0;
 }
 
+
 .container {
   margin: 20px auto;
 
@@ -18,22 +19,12 @@ h1 {
   margin-bottom: 20px;
 }
 
-button {
-  margin-top: 10px;
-}
+
 /* AlertComponent.css */
 
 
 
-.header {
-  text-align: center;
-  margin-bottom: 20px;
-}
 
-.header h1 {
-  font-size: 2rem;
-  color: #2c3e50;
-}
 
 .alert-container {
   font-family: Arial, sans-serif;
@@ -121,6 +112,7 @@ body, html {
   margin: 0;
   padding: 0;
   font-family: Arial, sans-serif;
+  background: linear-gradient(to bottom right, #ee87a6, #ffcd99);
 }
 
 /* Login Container */
@@ -129,12 +121,12 @@ body, html {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background: linear-gradient(to bottom right, #4facfe, #00f2fe);
+  background: linear-gradient(to bottom right, #ee87a6, #ffcd99);
 }
 
 /* Login Box */
 .login-box {
-  background: #ffffff;
+  background: #ffff;
   padding: 30px;
   border-radius: 8px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
@@ -338,69 +330,93 @@ body, html {
 }
 
 .footer-link:hover {
-  color: #007bff;
+  color: pink;
   text-decoration: underline;
 }
 
 
 
+/* General Styles */
 .family-locator-container {
+  max-width: 900px;
+  margin: 50px auto;
   padding: 20px;
-  max-width: 800px;
-  margin: 0 auto;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  
 }
 
 .family-locator-title {
   text-align: center;
   font-size: 2rem;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
+  color: #333;
 }
 
 .form-row {
-  margin-bottom: 9px;
+  justify-content: center;
+}
+
+.form-column {
+  margin-bottom: 10px;
 }
 
 .form-input {
-  padding: 5px;
-  font-size: 16px;
-  border-radius: 5px;
+  padding: 10px;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: 1px solid #ddd;
 }
 
 .add-member-button {
-  display: block;
   width: 100%;
-  padding: 10px;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  font-size: 16px;
-  cursor: pointer;
-  margin-top: 20px;
-}
-
-.add-member-button:hover {
-  background-color: #0056b3;
-}
-
-.family-members-list {
-  margin-top: 30px;
+  font-size: 1.1rem;
+  padding: 12px;
+  border-radius: 8px;
 }
 
 .family-members-title {
   font-size: 1.5rem;
-  margin-bottom: 10px;
+  margin-top: 30px;
+  color: #333;
+}
+
+.family-members-list {
+  margin-top: 20px;
 }
 
 .family-member-card {
-  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #ffffff;
 }
 
-.family-member-card .card-title {
+.no-members-text {
+  color: #777;
   font-size: 1.2rem;
-  font-weight: bold;
+  text-align: center;
+  margin-top: 20px;
 }
 
-.family-member-card .card-text {
-  font-size: 1rem;
+/* Responsive Design */
+@media (max-width: 768px) {
+  .form-column {
+    margin-bottom: 15px;
+  }
+
+  .form-input {
+    font-size: 0.9rem;
+  }
+
+  .add-member-button {
+    font-size: 1rem;
+  }
+
+
+
+
+
+
+  
 }

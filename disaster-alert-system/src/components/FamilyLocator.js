@@ -20,8 +20,8 @@ function FamilyLocator() {
       <h2 className="family-locator-title">Family Locator</h2>
       
       {/* Form to Add Family Member */}
-      <Row className="form-row">
-        <Col>
+      <Row className="form-row mb-4">
+        <Col md={4} className="form-column">
           <Form.Control
             placeholder="Family Member Name"
             value={name}
@@ -29,7 +29,7 @@ function FamilyLocator() {
             className="form-input"
           />
         </Col>
-        <Col>
+        <Col md={4} className="form-column">
           <Form.Control
             placeholder="Latitude"
             value={latitude}
@@ -37,7 +37,7 @@ function FamilyLocator() {
             className="form-input"
           />
         </Col>
-        <Col>
+        <Col md={4} className="form-column">
           <Form.Control
             placeholder="Longitude"
             value={longitude}
@@ -46,14 +46,21 @@ function FamilyLocator() {
           />
         </Col>
       </Row>
-      <Button className="add-member-button" onClick={addFamilyMember}>Add Family Member</Button>
+      <Button 
+        className="add-member-button mb-4" 
+        onClick={addFamilyMember}
+        variant="primary"
+        size="lg"
+      >
+        Add Family Member
+      </Button>
 
       {/* Display Stored Family Members */}
       <div className="family-members-list">
         <h3 className="family-members-title">Stored Family Members:</h3>
         {familyMembers.length > 0 ? (
           familyMembers.map((member, index) => (
-            <Card key={index} className="family-member-card">
+            <Card key={index} className="family-member-card mb-3">
               <Card.Body>
                 <Card.Title>{member.name}</Card.Title>
                 <Card.Text>
@@ -64,7 +71,7 @@ function FamilyLocator() {
             </Card>
           ))
         ) : (
-          <p>No family members added yet.</p>
+          <p className="no-members-text">No family members added yet.</p>
         )}
       </div>
     </div>
